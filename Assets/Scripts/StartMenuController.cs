@@ -9,11 +9,6 @@ public class StartMenuController : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-    public void OnMainmenuClick()
-    {
-        SceneManager.LoadScene("Main menu");
-    }
-
     public void OnExitClick()
     {
         // Exit the application
