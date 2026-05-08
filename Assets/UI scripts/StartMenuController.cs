@@ -6,7 +6,7 @@ public class StartMenuController : MonoBehaviour
 {
     public void OnStartClick()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Cleo UI test scene"); // moet nog veranderen met defenitieve scene
     }
 
     public void OnExitClick()
