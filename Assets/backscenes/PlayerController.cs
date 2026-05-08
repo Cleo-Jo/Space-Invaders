@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5;
     public float hInput;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
     void Start()
     {
         
@@ -16,5 +18,6 @@ public class PlayerController : MonoBehaviour
     {
         hInput = Input.GetAxisRaw("Horizontal");
         transform.Translate(Vector2.right *hInput*moveSpeed* Time.deltaTime);
+
     }
 }

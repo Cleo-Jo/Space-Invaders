@@ -4,7 +4,7 @@ public class ProjectileShoot : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public float projectileSpeed = 10f; // vitesse à appliquer si vous voulez override la valeur du prefab
-    public float spawnOffset = 1f; // décallage devant le vaisseau
+    public float spawnOffset = 6f; // décallage devant le vaisseau
 
     void Update()
     {
@@ -17,13 +17,14 @@ public class ProjectileShoot : MonoBehaviour
             }
 
             // Calculer la position de spawn (devant le vaisseau)
-            Vector3 spawnPos = transform.position + transform.up * spawnOffset;
+            Vector2 spawnPos = transform.position + transform.up * spawnOffset;
 
             // Instancier le prefab (on conserve la rotation du vaisseau pour orienter le projectile)
             GameObject projGO = Instantiate(projectilePrefab, spawnPos, transform.rotation);
 
             // Récupérer le composant Projectile sur l'instance créée
             Projectile p = projGO.GetComponent<Projectile>();
+            p.moveSpeed = projectileSpeed;
             if (p != null)
             {
                 // Optionnel : définir la vitesse depuis ce script
