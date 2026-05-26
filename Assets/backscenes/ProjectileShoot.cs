@@ -21,6 +21,7 @@ public class ProjectileShoot : MonoBehaviour
 
             // Instancier le prefab (on conserve la rotation du vaisseau pour orienter le projectile)
             GameObject projGO = Instantiate(projectilePrefab, spawnPos, transform.rotation);
+            projGO.AddComponent()
 
             // Récupérer le composant Projectile sur l'instance créée
             Projectile p = projGO.GetComponent<Projectile>();
