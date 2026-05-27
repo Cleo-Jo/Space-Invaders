@@ -3,8 +3,8 @@ using UnityEngine;
 public class ProjectileShoot : MonoBehaviour
 {
     public GameObject projectilePrefab;
-    public float projectileSpeed = 10f; // vitesse à appliquer si vous voulez override la valeur du prefab
-    public float spawnOffset = 6f; // décallage devant le vaisseau
+    public float projectileSpeed = 10f; // vitesse ï¿½ appliquer si vous voulez override la valeur du prefab
+    public float spawnOffset = 6f; // dï¿½callage devant le vaisseau
 
     void Update()
     {
@@ -12,7 +12,7 @@ public class ProjectileShoot : MonoBehaviour
         {
             if (projectilePrefab == null)
             {
-                Debug.LogWarning("projectilePrefab n'est pas défini dans l'Inspector.");
+                Debug.LogWarning("projectilePrefab n'est pas dï¿½fini dans l'Inspector.");
                 return;
             }
 
@@ -21,19 +21,19 @@ public class ProjectileShoot : MonoBehaviour
 
             // Instancier le prefab (on conserve la rotation du vaisseau pour orienter le projectile)
             GameObject projGO = Instantiate(projectilePrefab, spawnPos, transform.rotation);
-            projGO.AddComponent()
+            //projGO.AddComponent<Projectile>();
 
-            // Récupérer le composant Projectile sur l'instance créée
+            // Rï¿½cupï¿½rer le composant Projectile sur l'instance crï¿½ï¿½e
             Projectile p = projGO.GetComponent<Projectile>();
             p.moveSpeed = projectileSpeed;
             if (p != null)
             {
-                // Optionnel : définir la vitesse depuis ce script
+                // Optionnel : dï¿½finir la vitesse depuis ce script
                 p.moveSpeed = projectileSpeed;
             }
             else
             {
-                Debug.LogWarning("Le prefab n'a pas de composant Projectile attaché.");
+                Debug.LogWarning("Le prefab n'a pas de composant Projectile attachï¿½.");
             }
         }
     }
