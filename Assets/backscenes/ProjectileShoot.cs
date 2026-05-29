@@ -8,7 +8,7 @@ public class ProjectileShoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (projectilePrefab == null)
             {
