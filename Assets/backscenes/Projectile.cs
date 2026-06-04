@@ -24,13 +24,15 @@ public class Projectile : MonoBehaviour
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
-            pointManager.UpdateScore(50);
             Destroy(gameObject);
+            pointManager.UpdateScore(50);
         }
 
         if (collision.gameObject.tag == "Boundery")
         {
             Destroy(gameObject);
         }
+
+
     }
 }
