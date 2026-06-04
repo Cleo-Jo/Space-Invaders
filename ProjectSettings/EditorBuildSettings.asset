@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Cleo UI test scene.unity
     guid: a6fbcee6c8774de4fa9674b9a314cfaf
   - enabled: 1
-    path: Assets/Scenes/SampleSceneTestCopy.unity
+    path: Assets/Scenes/Game.unity
     guid: e87c04bc9354cbb4e88098afd4fc8e38
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

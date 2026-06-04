@@ -7,11 +7,13 @@ public class ShipMovement : MonoBehaviour
 
     public float moveSpeed;
 
+    private float wallCooldown = 0f;
+    private const float WallCooldownTime = 0.5f;
+
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
 
-        // Visualizer setup
         GameObject go = new GameObject("ColliderVisual");
         go.transform.SetParent(transform);
 
@@ -28,21 +30,22 @@ public class ShipMovement : MonoBehaviour
     {
         transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
 
-        // Sync visual to collider
         visual.localPosition = new Vector3(boxCollider.offset.x, boxCollider.offset.y, 0f);
         visual.localScale = new Vector3(boxCollider.size.x, boxCollider.size.y, 1f);
+
+        if (wallCooldown > 0f)
+            wallCooldown -= Time.deltaTime;
     }
 
     void UpdateColliderFromChildren()
     {
         if (transform.childCount == 0) return;
 
-        float minX = float.MaxValue;  // ← was MinValue, should be MaxValue
+        float minX = float.MaxValue;
         float maxX = float.MinValue;
 
         foreach (Transform child in transform)
         {
-            // Skip the visual debug object itself
             if (child.name == "ColliderVisual") continue;
 
             float worldX = child.position.x;
@@ -54,7 +57,7 @@ public class ShipMovement : MonoBehaviour
         float localMaxX = transform.InverseTransformPoint(new Vector3(maxX, 0, 0)).x;
 
         float centerX = (localMinX + localMaxX) / 2f;
-        float width = localMaxX - localMinX;  // ← was min - max, should be max - min
+        float width = localMaxX - localMinX;
 
         Vector2 offset = boxCollider.offset;
         offset.x = centerX;
@@ -67,9 +70,16 @@ public class ShipMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Boundery")
+        if (collision.gameObject.tag == "Boundery" && wallCooldown <= 0f)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z);
+            wallCooldown = WallCooldownTime;
+
+            transform.position = new Vector3(
+                transform.position.x,
+                transform.position.y - 1f,
+                transform.position.z
+            );
+
             moveSpeed *= -1;
         }
     }
